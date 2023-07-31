@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title></title>
+
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <input type="text">
+    <button>搜索</button>
+    <p></p>
+</body>
+<script type="text/javascript">
+    const content = [
+        'chirs:123456',
+        'bob:23456',
+        'jim:09876',
+        'lili:57493',
+        'Tom:987855'
+    ]
+    console.log(content.length);
+    const input = document.querySelector('input')
+    const p = document.querySelector('p')
+    const btn = document.querySelector('button')
+    btn.addEventListener('click', () => {
+        let searchName = input.value.toLowerCase()
+        input.value = ''
+        input.focus()
+        for (let i = 0; i < content.length; i++) {
+            let contents = content[i].split(':')
+            // console.log(contents);
+            if (contents[0].toLowerCase() === searchName) {
+                p.textContent = contents[0] + "'s number is " + contents[1] + "."
+                break
+            } else{
+                p.textContent = '找不到'
+            }
+        }
+    })
+
+</script>
+
+</html>
