@@ -44,8 +44,8 @@ exports.Animal = void 0;
 // sam.move();
 // tom.move(34);
 var Animal = /** @class */ (function () {
-    function Animal(theName) {
-        this.name = theName;
+    function Animal(name) {
+        this.name = name;
     }
     return Animal;
 }());
@@ -72,4 +72,14 @@ catch (err) {
 }
 var employee = new Employee("Bob");
 animal = rhino;
-// animal = employee; // 错误: Animal 与 Employee 不兼容.
+var test1 = { key: "wsd", value: 10 };
+var test2 = { key: 20, value: true };
+console.log(test1, test2);
+var count_number = 123;
+console.log(count_number);
+var str = 123;
+var str1 = "1323";
+console.log(str, str1);
+var myTest = { key: "haha", value: 1 };
+console.log(myTest);
+// 交叉类型：把类型都组合起来，变量赋值必须满足交叉类型
