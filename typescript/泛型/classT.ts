@@ -73,6 +73,7 @@ let identity2: () => number = () => {
 let myIdentity: number = 2
 // : <T>(arg: T) => T
 // :number
+// () => number 
 
 let c: (x: number) => (y: number) => (b: number) => string = (c: number) => {
     return (c: number) => {
