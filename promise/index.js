@@ -25,7 +25,7 @@ const MyPromise = require('./Promise_study')
 
 
 function p1() {
-	return new MyPromise((resolve, reject) =>{
+	return new MyPromise((resolve, reject) => {
 		setTimeout(() => {
 			resolve('p1')
 		}, 2000)
@@ -34,9 +34,20 @@ function p1() {
 
 function p2() {
 	return new MyPromise((resolve, reject) => {
-		resolve('p2')
+		// resolve('成功')
+		reject('失败')
 	})
 }
+p2().then(value => console.log(value))
+	.catch(reason => console.log(reason))
+// p2().finally(() => {
+// 	console.log('finally')
+// 	return p1()
+// }).then(value => {
+// 	console.log(value)
+// }, reason => {
+// 	consoloe.log(reason)
+// })    
 // promise的resolve方法实现
 // const promise = new MyPromise((resolve, reject) => {
 // 	resolve('成功')

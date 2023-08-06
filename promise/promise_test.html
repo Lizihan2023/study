@@ -9,20 +9,25 @@
 
 <body>
 	<script>
-		function p1() {
-			new Promise(function(resolve, reject) {
-				setTimeout(() => {
-					resolve('p1')
-				},2000)
-			})
-		}
+		// function p1() {
+		// 	new Promise(function(resolve, reject) {
+		// 		setTimeout(() => {
+		// 			resolve('p1')
+		// 		},2000)
+		// 	})
+		// }
 	
 		function p2() {
 			new Promise((resolve, reject) => {
 				resolve('p2')
 			})
 		}
-	
+		p2()
+		.then(value => console.log(value))
+		.catch(reason => console.log(reason))
+		// p1.finally(() => {
+		// 	console.log('finally')
+		// }).then(value => console.log(value))
 
 		// Promise.resolve(10).then(value => console.log(value))
 		// Promise.resolve(p1()).then(value => {console.log(value)})

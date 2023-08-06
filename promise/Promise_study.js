@@ -131,6 +131,20 @@ class MyPromise { // 创建类 创建构造函数和执行器
 		})
 		return promise2
 	}
+
+	finally(callback) {
+		return this.then(value => {
+			return MyPromise.resolve(callback()).then(() => value)
+		}, reason => {
+			return MyPromise.reject(callback()).then(() => { return reason })
+		})
+	}
+
+	catch(failCallback) {
+		return this.then(undefined, failCallback)
+		
+	}
+
 	static all(array) {
 		let result = []
 		let index = 0
@@ -156,7 +170,7 @@ class MyPromise { // 创建类 创建构造函数和执行器
 		})
 	}
 	static resolve(value) {
-		if(value instanceof MyPromise) {
+		if (value instanceof MyPromise) {
 			// promise对象
 			return value
 		} else {

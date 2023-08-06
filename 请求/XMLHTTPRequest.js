@@ -29,6 +29,7 @@ function sendXHR(url, callback) {
 	}
 	xhr.send(null)
 }
+
 // 获取实例
 function get(url) {
 	sendXHR(url, response => {
