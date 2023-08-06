@@ -1,15 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <script>
-        new Promise((resolve, reject) => {
 
-        })
-    </script>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<script>
+		function p1() {
+			new Promise(function(resolve, reject) {
+				setTimeout(() => {
+					resolve('p1')
+				},2000)
+			})
+		}
+	
+		function p2() {
+			new Promise((resolve, reject) => {
+				resolve('p2')
+			})
+		}
+	
+
+		// Promise.resolve(10).then(value => console.log(value))
+		// Promise.resolve(p1()).then(value => {console.log(value)})
+		
+		// Promise.all(['a', 'b', p1(), p2(), 'c']).then(function(result) {
+		// // result => ['a', 'b', 'p1', 'p2', c]
+		// })
+		
+		// const promise = new Promise((resolve, reject) => {
+		// 	resolve(100)
+		// })
+
+		// let p1 = promise.then(value => {
+		// 	console.log(value)
+		// 	return p1
+		// })
+
+		// p1.then(() => { }, reason => {
+		// 	console.log(reason.message)
+		// })
+		// Error: Chaining cycle detected for promise #<Promise>
+	</script>
 </body>
+
 </html>
