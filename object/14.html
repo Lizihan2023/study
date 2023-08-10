@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<title>深入理解javascript原型和闭包（10）——this</title>
+	</head>
+	<body>
+		<script>
+			var x = 10 
+	
+			var f = function (){
+				console.log(this.x)
+			} 
+			
+			var a = {
+				x:20,
+				fn:f
+			}
+			f()
+			console.log(a.fn())
+		</script>
+	</body>
+</html>

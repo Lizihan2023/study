@@ -37,6 +37,6 @@ getPromise('test')
 myReadFile('test', (data) => {
     console.log('myReadFile', data)
     myReadFile('test1', (data) => {
-
+        console.log(data)
     })
 })

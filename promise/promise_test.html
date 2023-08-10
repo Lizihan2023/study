@@ -18,13 +18,14 @@
 		// }
 	
 		function p2() {
-			new Promise((resolve, reject) => {
+			return	new Promise((resolve, reject) => {
 				resolve('p2')
 			})
 		}
-		p2()
-		.then(value => console.log(value))
-		.catch(reason => console.log(reason))
+		var a = p2()
+		console.log(a)
+		//.then(value => console.log(value))
+		//.catch(reason => console.log(reason))
 		// p1.finally(() => {
 		// 	console.log('finally')
 		// }).then(value => console.log(value))

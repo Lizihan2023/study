@@ -6,20 +6,20 @@ function saveDate() {
     window.localStorage.setItem('msg', 'hello')
     localStorage.setItem('person', JSON.stringify(p))
 }
-saveDate()
+// saveDate()
 
 function readDate() {
     console.log(localStorage.getItem('msg'));
     console.log(JSON.parse(localStorage.getItem('person')));
 }
-readDate()
+// readDate()
 
 function deleteDate() {
     localStorage.removeItem('msg')
 }
-deleteDate()
+// deleteDate()
 
 function clearDate() {
     localStorage.clear()
 }
-clearDate()
+// clearDate()

@@ -25,12 +25,14 @@ class MyPromise { // 创建类 创建构造函数和执行器
 	// 失败回调
 	failCallback = []
 	resolve = value => {
+		console.log('value',value,this.status)
 		// 如果状态不是等待，阻止程序向下运行
-		if (this.status !== PENDING) {
+		if (this.status !== PENDING) { // false
 			return
 		}
 		// 将状态更改为成功
 		this.status = FULFILLED
+		console.log('value2',value,this.status)
 		//保存成功后的值
 		this.value = value
 		// 判断成功回调是否存在,如果存在就调用
@@ -38,6 +40,7 @@ class MyPromise { // 创建类 创建构造函数和执行器
 		// 当多个then方法时以数组的长度为循环条件 通过shift方法 从头往后 再把值赋予
 		while (this.successCallback.length) {
 			this.successCallback.shift()() //当函数传递为数组时不需要传递值，只需要调用即可
+			//s()
 		}
 	}
 	reject = reason => {
@@ -62,6 +65,7 @@ class MyPromise { // 创建类 创建构造函数和执行器
 		let promise2 = new MyPromise((resolve, reject) => { // 当创建实例时 我们可以传入一个执行器
 			// 判断状态
 			if (this.status === FULFILLED) {
+				console.log('第n次执行')
 				// 通过异步代码 拿到promise2的值
 				setTimeout(() => {
 					try {
@@ -93,12 +97,15 @@ class MyPromise { // 创建类 创建构造函数和执行器
 					}
 				}, 0)
 			} else {
+				console.log('then',this.status)
 				// 当为等待状态时 ，把成功和失败的函数存储起来
-				this.successCallback.push(() => {
+				const s = () => {
 					setTimeout(() => {
 						try {
+							console.log('成功的回调')
 							// 给成功回调函数定义一个变量 使他的值可以返回 当调用成功回调时，值会被传入下一个then方法
-							let x = successCallback(this.value)
+							let x = successCallback(this.value) //undefined
+
 							// 判断x的值是普通值还是promise对象
 							//如果是普通值 直接调用resolve
 							//如果是promise对象 查看promise对象返回的结果
@@ -109,7 +116,8 @@ class MyPromise { // 创建类 创建构造函数和执行器
 							reject(e)
 						}
 					}, 0)
-				})
+				}
+				this.successCallback.push(s)
 				this.failCallback.push(() => {
 					setTimeout(() => {
 						try {
@@ -192,6 +200,7 @@ function resolvePromise(promise2, x, resolve, reject) {
 		x.then(resolve, reject)
 	} else {
 		// 普通值
+		console.log('普通值',x)
 		resolve(x)
 	}
 }
