@@ -1,0 +1,33 @@
+#container .arrows {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+#container .arrows .arrow {
+	position: absolute;
+	width: 20px;
+	height: 80px;
+	display: inline-flex;
+	top: 50%;
+	transform: translateY(-50%);
+	align-items: center;
+	justify-content: center;
+	font-size: 32px;
+	color: red;
+	font-weight: 600;
+    z-index: 10;
+    cursor: pointer;
+}
+
+#container .arrows .right-arrows {
+    right: 20px;
+}
+#container .arrows .left-arrows {
+    left: 20px;
+    
+}
+/* #container .arrows .left-arrows:hover,
+#container .arrows .right-arrows:hover {
+    cursor: pointer;
+} */

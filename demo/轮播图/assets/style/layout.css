@@ -1,0 +1,29 @@
+#container {
+	position: relative;
+	margin: 100px;
+	width: 590px;
+	height: 250px;
+	overflow: hidden;
+}
+
+#container #img_box {
+	width: calc(590px * 4);
+	position: absolute;
+	display: flex;
+	left: 0;
+	top: 0;
+	/* border: 1px solid red; */
+	
+}
+
+#container #img_box li {
+	width: 590px;
+	height: 250px;
+	display: block;
+}
+
+#container #img_box li>img {
+	width: 100%;
+	max-height: 100%;
+	/* border: 1px solid yellow; */
+}

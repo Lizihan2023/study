@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="./assets/style/index.css" rel="stylesheet">
+	<title>轮播图</title>
+</head>
+
+<body>
+	<div id="container">
+		<ul id="img_box">
+			<li><img src="./assets/img/1.jpg" alt=""></li>
+			<li><img src="./assets/img/2.jpg" alt=""></li>
+			<li><img src="./assets/img/3.jpg" alt=""></li>
+			<li><img src="./assets/img/4.jpg" alt=""></li>
+		</ul>
+		<div id="dot_btn">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div class="arrows">
+			<a class="arrow left-arrows">&lt;</a>
+			<a class="arrow right-arrows">&gt;</a>
+		</div>
+		<script>
+
+			// 容器
+			const container = document.getElementById('container')
+			// 轮播图
+			const imgBox = document.getElementById('img_box')//[1]
+			// 轮播里的每一项
+			const dotList = document.querySelectorAll('#dot_btn li') // []
+			console.log(dotList)
+			// 圆点按钮
+			const dotBtn = document.getElementById('dot_btn')
+			// console.log(imgBox);
+			// console.log(dotBtn);
+			// 图片
+			// const img = document.getElementsByTagName('img')
+			// console.log(img)
+			const leftArrows = document.getElementsByClassName('left-arrows')
+			// console.log(leftArrows)
+			const rightArrows = document.getElementsByClassName('right-arrows')
+			// console.log(rightArrows)
+			dotList.forEach((element, index) => {
+				// console.log(dotList)
+				// console.log(element)
+				element.addEventListener('click', () => {
+					imgBox.style.left = index * - imgWidth + 'px'
+				})
+			})
+			// 每个图片宽度
+			let imgWidth = 590;
+			// 图片起始位置
+			let index = 0;
+			let inter = -1
+			// let init = true
+			// 定时器图片自动播放
+			function timer() {
+				inter = setInterval(() => {
+					index++;
+					// console.log(index)
+					imgBox.style.left = index * - imgWidth + 'px';
+					if (index >= 4) {
+						index = 0
+						imgBox.style.left = 0 + 'px';
+					}
+				}, 1000)
+			}
+			timer()
+			// 当鼠标移入图片停止自动播放，移出自动开启播放
+			container.addEventListener('mouseenter', () => {
+				console.log('inter mouseenter', inter)
+				clearInterval(inter)
+			})
+			container.addEventListener('mouseleave', () => {
+				console.log('inter mouseleave', inter)
+				timer()
+			})
+			// 左右按钮 对应方向切换图片
+			console.log(index)
+
+			leftArrows[0].addEventListener('click', () => {
+				if (index == 3) {
+					index = 0
+				} else {
+					index++ // 1 2 3 
+				}
+				imgBox.style.left = index * - imgWidth + 'px'
+			})
+			rightArrows[0].addEventListener('click', () => {
+				console.log('index',index)
+				if (index == 0) {
+					index = 3
+				} else {
+					index-- // 1 2 3 
+				}
+				imgBox.style.left = index * - imgWidth + 'px'
+			})
+
+		</script>
+</body>
+
+</html>
