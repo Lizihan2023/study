@@ -1,0 +1,43 @@
+.container {
+	margin-top: 300px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+button {
+	width: 50px;
+	height: 50px;
+	border: 1px solid #eee;
+	background-color: #fff;
+	font-size: 18px;
+	cursor: pointer;
+}
+
+.container #left_arrows {
+	margin-right: 5px;
+}
+
+.container #right_arrows {
+	margin-left: 5px;
+}
+
+.container #page_number .number {
+	margin: 0 5px;
+
+}
+.container #left_arrows:not(.disabled):hover,
+.container #right_arrows:not(.disabled):hover,
+.container #page_number .number:not(.disabled):hover {
+	border: 2px solid #1e9cdc;
+	color: #1e9cdc;
+}
+
+.selected {
+	border: 2px solid #1e9cdc;
+	color: #1e9cdc;
+}
+
+.arrow.disabled{
+	cursor: not-allowed;
+}

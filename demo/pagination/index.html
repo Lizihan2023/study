@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" , content="width=device-width, initial-scale=1.0">
+	<link href="./assets/style/index.css" rel="stylesheet">
+	<title>分页器</title>
+</head>
+
+<body>
+	<div class="container">
+		<button class="arrow left" id="left_arrows">&lt;</button>
+		<div id="page_number">
+
+		</div>
+		<button class="arrow right" id="right_arrows">&gt;</button>
+	</div>
+
+	<script>
+		let currentPage = 1
+		let pageRecord = 10
+		let total = 87
+		// 总的页数
+		const pageNum = Math.ceil(total / pageRecord)
+
+		// 获取dom
+		const leftArrow = document.getElementById('left_arrows')
+		const rightArrow = document.getElementById('right_arrows')
+		const page = document.getElementById('page_number')
+
+		function genPage(pageNum) {
+			// 动态生成页码
+			for (let i = 1; i <= pageNum; i++) {
+				const pageItem = document.createElement('button')
+				pageItem.className = 'number'
+				pageItem.textContent = i
+				pageItem.onclick = () => {
+					setInactivePage(currentPage)
+					currentPage = i
+					setActivePage(i)
+					computedArrowStatus()
+				}
+				page.appendChild(pageItem)
+			}
+		}
+
+
+		genPage(pageNum)
+
+		// 默认选中第一页, 禁用左侧箭头
+		// console.log(page.children[0])
+		// page.children[0].className = 'selected'
+
+		if (currentPage == 1) {
+			leftArrow.classList.add('disabled')
+		}
+
+		setActivePage(1)
+
+		function setInactivePage(index) {
+			page.children[index - 1].classList.remove('selected')
+		}
+
+		function setActivePage(index) {
+			page.children[index - 1].classList.add('selected')
+		}
+
+		// 设置下一页禁用状态
+		function setRightDisabled() {
+			const isDisabled = currentPage == pageNum
+			if (isDisabled) {
+				rightArrow.setAttribute('disabled', true)
+				rightArrow.classList.add('disabled')
+			}
+		}
+
+		// 设置某个元素的禁用disabled状态
+		function setArrowStatus(target, disabled) {
+			if (disabled) {
+				target.setAttribute('disabled', true)
+				target.classList.add('disabled')
+			} else {
+				target.removeAttribute('disabled')
+				target.classList.remove('disabled')
+			}
+		}
+
+		// 设置上一页 下一页  的禁用状态
+		function computedArrowStatus() {
+			const isLeftDisabled = currentPage == 1
+			const isRightDisabled = currentPage == pageNum
+			setArrowStatus(leftArrow, isLeftDisabled)
+			setArrowStatus(rightArrow, isRightDisabled)
+		}
+
+		// 控制左右箭头点击事件
+		rightArrow.addEventListener('click', () => {
+			setInactivePage(currentPage)
+			currentPage++;
+			setActivePage(currentPage)
+			computedArrowStatus()
+		})
+		leftArrow.addEventListener('click', () => {
+			setInactivePage(currentPage)
+			currentPage--;
+			setActivePage(currentPage)
+			computedArrowStatus()
+		})
+	</script>
+</body>
+
+</html>
