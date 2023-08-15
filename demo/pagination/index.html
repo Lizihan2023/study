@@ -48,9 +48,9 @@
 
 		genPage(pageNum)
 
-		// 默认选中第一页, 禁用左侧箭头
-		// console.log(page.children[0])
-		// page.children[0].className = 'selected'
+		// // 默认选中第一页, 禁用左侧箭头
+		// // console.log(page.children[0])
+		// // page.children[0].className = 'selected'
 
 		if (currentPage == 1) {
 			leftArrow.classList.add('disabled')
@@ -59,21 +59,24 @@
 		setActivePage(1)
 
 		function setInactivePage(index) {
+			// console.log(index) 默认为第一页， 当触发点击事件删除当前样式
 			page.children[index - 1].classList.remove('selected')
+			console.log('end', index)
 		}
 
 		function setActivePage(index) {
+			// console.log(index) 触发点击事件 当前页++ 给下一个按钮加活动效果
 			page.children[index - 1].classList.add('selected')
 		}
 
 		// 设置下一页禁用状态
-		function setRightDisabled() {
-			const isDisabled = currentPage == pageNum
-			if (isDisabled) {
-				rightArrow.setAttribute('disabled', true)
-				rightArrow.classList.add('disabled')
-			}
-		}
+		// function setRightDisabled() {
+		// 	const isDisabled = currentPage == pageNum
+		// 	if (isDisabled) {
+		// 		rightArrow.setAttribute('disabled', true)
+		// 		rightArrow.classList.add('disabled')
+		// 	}
+		// }
 
 		// 设置某个元素的禁用disabled状态
 		function setArrowStatus(target, disabled) {
@@ -97,15 +100,23 @@
 		// 控制左右箭头点击事件
 		rightArrow.addEventListener('click', () => {
 			setInactivePage(currentPage)
+			// 先执行删除当前按钮效果的方法
 			currentPage++;
+			// ++到下一个按钮
 			setActivePage(currentPage)
+			// 再执行添加方法
 			computedArrowStatus()
+			// 再判断是否为第一页和最后一页 判断是否需要禁用箭头按钮
 		})
 		leftArrow.addEventListener('click', () => {
 			setInactivePage(currentPage)
+			// 先执行删除当前按钮效果的方法
 			currentPage--;
+			// ++到下一个按钮
 			setActivePage(currentPage)
+			// 再执行添加方法
 			computedArrowStatus()
+			// 再判断是否为第一页和最后一页 判断是否需要禁用箭头按钮
 		})
 	</script>
 </body>
